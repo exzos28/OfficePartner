@@ -38,6 +38,7 @@ export const Starting: React.FC = () => {
     {
       name: 'Мой профиль',
       icon: <Icon name="account" />,
+      onPress: () => navigation.navigate('MyProfileStack'),
     },
   ]
 
