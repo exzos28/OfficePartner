@@ -7,6 +7,7 @@ import { BankData } from '~/screens/MyProfile/BankData'
 import { CompanyOffice } from '~/screens/MyProfile/CompanyOffice'
 import { ManagersProfile } from '~/screens/MyProfile/ManagersProfile'
 import { UserCreation } from '~/screens/MyProfile/UserCreation'
+import { MyCalendar } from '~/screens/MyProfile/MyCalendar'
 
 type MyProfileParamList = {
   Starting: undefined
@@ -16,6 +17,7 @@ type MyProfileParamList = {
   GeneralInformation: undefined
   BankData: undefined
   CompanyOffice: undefined
+  MyCalendar: undefined
 }
 
 const Stack = createStackNavigator<MyProfileParamList>()
@@ -26,7 +28,7 @@ const navigatorOption = {
 
 export const MyProfileStack = () => (
   <Stack.Navigator
-    initialRouteName="UserCreation"
+    initialRouteName="MyCalendar"
     screenOptions={navigatorOption}>
     <Stack.Screen name="Starting" component={Starting} />
     <Stack.Screen name="AdmistatorsProfile" component={AdmistatorsProfile} />
@@ -35,5 +37,6 @@ export const MyProfileStack = () => (
     <Stack.Screen name="GeneralInformation" component={GeneralInformation} />
     <Stack.Screen name="BankData" component={BankData} />
     <Stack.Screen name="CompanyOffice" component={CompanyOffice} />
+    <Stack.Screen name="MyCalendar" component={MyCalendar} />
   </Stack.Navigator>
 )

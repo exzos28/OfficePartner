@@ -22,7 +22,7 @@ const navigatorOption = {
 
 export const HomeStack = () => (
   <Stack.Navigator
-    initialRouteName="Starting"
+    initialRouteName="MyProfileStack"
     screenOptions={navigatorOption}>
     <Stack.Screen name="Starting" component={Starting} />
     <Stack.Screen name="TechnikStack" component={TechnikStack} />
