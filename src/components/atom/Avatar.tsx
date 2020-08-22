@@ -1,19 +1,24 @@
 import React from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import { Image, StyleSheet } from 'react-native'
+import { Image, StyleSheet, ImageRequireSource } from 'react-native'
 import restyleTheme, { Box } from '~/theme'
 
 type Props = {
-  uri: string
+  uri?: string
   size?: {
     width: number
     height: number
   }
+  source?: ImageRequireSource
 }
 
-export const Avatar: React.FC<Props> = ({ uri, size }) => {
+export const Avatar: React.FC<Props> = ({ uri, source, size }) => {
   const width = size?.width || 51
   const height = size?.height || 51
+
+
+  const _source = source ? source : { uri }
+
+ 
   return (
     <Box borderRadius={width / 2} overflow="hidden" {...{ width, height }}>
       <Image
@@ -21,9 +26,7 @@ export const Avatar: React.FC<Props> = ({ uri, size }) => {
           ...StyleSheet.absoluteFillObject,
           backgroundColor: restyleTheme.colors.mediumGrey,
         }}
-        source={{
-          uri,
-        }}
+        source={_source}
       />
     </Box>
   )

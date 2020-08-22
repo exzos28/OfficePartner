@@ -12,17 +12,17 @@ import { AddImage } from './AddImage'
 const items = [
     {
       id: 1,
-      text: 'Принтер1',
+      modalItemComponent: 'Принтер1',
       value: 'print',
     },
     {
       id: 2,
-      text: 'Принтер2',
+      modalItemComponent: 'Принтер2',
       value: 'print',
     },
     {
       id: 3,
-      text: 'Принтер3',
+      modalItemComponent: 'Принтер3',
       value: 'print',
     },
 ]

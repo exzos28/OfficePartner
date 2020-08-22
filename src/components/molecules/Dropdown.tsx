@@ -1,40 +1,81 @@
 import React, { useState } from 'react'
 import { Box, Text, TouchableBox } from '~/theme'
 import { Label, Icon } from '../atom'
-import { Modal, ItemType } from './Modal'
+import { SelectedModal } from './SelectedModal'
+import { SelectedModalItemType } from '~/@types'
 
 type Props = {
   label?: string
+  width?: number
   modalTitle?: string
-  items: Array<ItemType>
+  items?: Array<SelectedModalItemType>
+  defaultSelectedItem?: null | SelectedModalItemType
+  renderModalItem?: (
+    item: SelectedModalItemType,
+    cb: (item: SelectedModalItemType) => void,
+  ) => React.ReactNode
 }
 
-export const Dropdown: React.FC<Props> = ({ items, label, modalTitle }) => {
+export const Dropdown: React.FC<Props> = ({
+  items,
+  width,
+  label,
+  renderModalItem,
+  defaultSelectedItem = null,
+  modalTitle,
+}) => {
   const [modalVisible, setModalVisible] = useState(false)
-  const [selectedItem, setSelectedItem] = useState<null | ItemType>(null) // TODO
+  const [
+    selectedItem,
+    setSelectedItem,
+  ] = useState<null | SelectedModalItemType>(defaultSelectedItem)
 
-  const handleSelect = (item: ItemType) => {
+  const handleSelect = (item: SelectedModalItemType) => {
     setSelectedItem(item)
     setModalVisible(false)
   }
 
+  const renderSelectedItem = () => {
+    if (selectedItem) {
+      const { inputSelectedValue, modalItemComponent } = selectedItem
+
+      if (inputSelectedValue) {
+        return inputSelectedValue
+      }
+
+      if (typeof modalItemComponent === 'string') {
+        return <Text>{modalItemComponent}</Text>
+      }
+
+      return modalItemComponent
+    }
+  }
   return (
     <Box>
       {label && <Label {...{ label }} />}
       <TouchableBox
         backgroundColor="inputBackground"
         height={56}
+        {...{ width }}
         borderRadius={6}
         onPress={() => setModalVisible(true)}
         paddingHorizontal="m"
         justifyContent="center">
-        {selectedItem && <Text>{selectedItem.text}</Text>}
+        {renderSelectedItem()}
         <Box position="absolute" right={14} top={23}>
           <Icon name="downBoldArrow" />
         </Box>
       </TouchableBox>
 
-      <Modal {...{ items, handleSelect, modalTitle, modalVisible }} />
+      <SelectedModal
+        {...{
+          items,
+          handleSelect,
+          modalTitle,
+          modalVisible,
+          renderItem: renderModalItem,
+        }}
+      />
     </Box>
   )
 }

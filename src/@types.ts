@@ -16,3 +16,12 @@ export type Message = {
   date: string
   currentOwner: boolean
 }
+
+export type SelectedModalItemType = {
+  id: number
+  modalItemComponent: string | number | React.ReactNode
+  inputSelectedValue?: React.ReactNode
+  value: string | number
+  type?: 'primary' | string
+  onPress?: () => void
+}

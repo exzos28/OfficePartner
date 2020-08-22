@@ -8,6 +8,7 @@ import {
   SpacingProps,
 } from '@shopify/restyle'
 import { Label } from '~/components/atom'
+import { PhoneDropdown } from './PhoneDropdown'
 
 type ContainerProps = LayoutProps<Theme> &
   SpacingProps<Theme> &
@@ -15,6 +16,7 @@ type ContainerProps = LayoutProps<Theme> &
   BackgroundColorProps<Theme> & {}
 
 type Props = {
+  type?: 'phone'
   label?: string
   inputProps?: TextInputProps
   container?: ContainerProps
@@ -24,6 +26,7 @@ type Props = {
 
 export const Input: React.FC<Props> = ({
   label,
+  type,
   inputProps,
   inputContainerProps,
   container,
@@ -32,6 +35,13 @@ export const Input: React.FC<Props> = ({
   const _renderLabel = () => {
     if (label) {
       return <Label {...{ label, required }} />
+    }
+    return null
+  }
+
+  const _renderLeftComponent = () => {
+    if (type === 'phone') {
+      return <PhoneDropdown />
     }
     return null
   }
@@ -46,17 +56,21 @@ export const Input: React.FC<Props> = ({
   return (
     <Box {...container}>
       {_renderLabel()}
-      <Box
-        backgroundColor="inputBackground"
-        height={56}
-        borderRadius={6}
-        {...inputContainerProps}>
-        <TextInput
-          underlineColorAndroid="transparent"
-          // @ts-ignore
-          style={[styles.textInput, multilineStyles()]} // TODO
-          {...inputProps}
-        />
+      <Box flexDirection="row">
+        {_renderLeftComponent()}
+        <Box
+          flexGrow={1}
+          backgroundColor="inputBackground"
+          height={56}
+          borderRadius={6}
+          {...inputContainerProps}>
+          <TextInput
+            underlineColorAndroid="transparent"
+            // @ts-ignore
+            style={[styles.textInput, multilineStyles()]} // TODO
+            {...inputProps}
+          />
+        </Box>
       </Box>
     </Box>
   )

@@ -2,40 +2,57 @@ import React from 'react'
 import { Modal as RNModal, FlatList, Dimensions } from 'react-native'
 import { BlurView } from '@react-native-community/blur'
 import restyleTheme, { Box, TouchableBox, Text } from '~/theme'
-import { Button } from '../atom'
+import { SelectedModalItemType } from '~/@types'
 
 const HEIGTH = Dimensions.get('window').height
 
 type Props = {
   modalVisible: boolean
   modalTitle?: string
-  items: Array<ItemType>
-  handleSelect: (item: ItemType) => void
+  items?: Array<SelectedModalItemType>
+  handleSelect: (item: SelectedModalItemType) => void
   numbered?: boolean
+  renderItem?: (
+    item: SelectedModalItemType,
+    cb: (item: SelectedModalItemType) => void,
+  ) => void
 }
 
-export type ItemType = {
-  id: number
-  text: string | number
-  value: string | number
-  type?: 'primary' | string
-  onPress?: () => void
-}
-
-export const Modal: React.FC<Props> = ({
+export const SelectedModal: React.FC<Props> = ({
   modalVisible,
   handleSelect,
   modalTitle,
+  renderItem,
   items,
   numbered,
 }) => {
-  const onItemPress = (item: ItemType) => {
+  const onItemPress = (item: SelectedModalItemType) => {
     if (item.onPress) item.onPress()
     else handleSelect(item)
   }
 
-  const _renderItem = ({ item, index }: { item: ItemType; index: number }) => {
-    const _text = numbered ? `${index + 1}. ${item.text}` : item.text
+  const _renderItem = ({
+    item,
+    index,
+  }: {
+    item: SelectedModalItemType
+    index: number
+  }) => {
+    if (renderItem) return renderItem(item, onItemPress)
+    const _renderText = () => {
+      const _text = numbered
+        ? `${index + 1}. ${item.modalItemComponent}`
+        : item.modalItemComponent
+
+      if (typeof item.modalItemComponent === 'string')
+        return (
+          <Text variant="medium" {...{ color }} textAlign="center">
+            {_text}
+          </Text>
+        )
+      else return item.modalItemComponent
+    }
+
     const backgroundColor = item.type === 'primary' ? 'primary' : 'white'
     const color = item.type === 'primary' ? 'white' : 'primary'
     return (
@@ -47,9 +64,7 @@ export const Modal: React.FC<Props> = ({
         padding="m"
         onPress={() => onItemPress(item)}
         {...{ backgroundColor }}>
-        <Text variant="medium" {...{ color }} textAlign="center">
-          {_text}
-        </Text>
+        {_renderText()}
       </TouchableBox>
     )
   }
@@ -87,7 +102,7 @@ export const Modal: React.FC<Props> = ({
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{
                   padding: restyleTheme.spacing.l,
-                  paddingTop: restyleTheme.spacing.m,
+                  // paddingTop: restyleTheme.spacing.m,
                 }}
                 data={items}
                 renderItem={_renderItem}

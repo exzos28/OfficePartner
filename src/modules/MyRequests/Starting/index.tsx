@@ -3,7 +3,7 @@ import { Box, TouchableBox, Text } from '~/theme'
 import { Header } from '~/components/organisms'
 import { Section } from '~/components/template'
 import { MasterCardList } from '~/components/organisms/MasterCardList'
-import { Fab, Dropdown, Modal } from '~/components/molecules'
+import { Fab, Dropdown, SelectedModal } from '~/components/molecules'
 import { useNavigation } from '@react-navigation/native'
 
 const items = [
@@ -82,22 +82,22 @@ const items = [
 const modalTypeItems = [
   {
     id: 1,
-    text: 'Консультация',
+    modalItemComponent: 'Консультация',
     value: '',
   },
   {
     id: 2,
-    text: 'Вызов мастера',
+    modalItemComponent: 'Вызов мастера',
     value: '',
   },
   {
     id: 3,
-    text: 'Запрос КП',
+    modalItemComponent: 'Запрос КП',
     value: '',
   },
   {
     id: 4,
-    text: 'Финансовые вопросы',
+    modalItemComponent: 'Финансовые вопросы',
     value: '',
   },
 ]
@@ -119,7 +119,7 @@ export const Starting: React.FC = () => {
           <MasterCardList items={items} />
         </Box>
         <Fab onPress={() => setTypeModalVisible(true)} />
-        <Modal
+        <SelectedModal
           numbered
           items={modalTypeItems}
           modalVisible={typeModalVisible}

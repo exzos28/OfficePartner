@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Box } from '~/theme'
 import { Header, ListMenu } from '~/components/organisms'
-import { Modal } from '~/components/molecules'
+import { SelectedModal } from '~/components/molecules'
 import { Icon } from '~/components/atom'
 import { Section } from '~/components/template'
 import { PickImage, Result } from './PickImage'
@@ -47,22 +47,22 @@ export const Starting: React.FC = () => {
     {
       id: 1,
       value: '',
-      text: 'Вызвать мастера для ремонта',
+      modalItemComponent: 'Вызвать мастера для ремонта',
     },
     {
       id: 2,
       value: '',
-      text: 'Доставить на ремонт самостоятельно',
+      modalItemComponent: 'Доставить на ремонт самостоятельно',
     },
     {
       id: 3,
       value: '',
-      text: 'Запросить консультацию',
+      modalItemComponent: 'Запросить консультацию',
     },
     {
       id: 4,
       value: '',
-      text: 'Подробности устройства',
+      modalItemComponent: 'Подробности устройства',
     },
   ]
 
@@ -70,13 +70,13 @@ export const Starting: React.FC = () => {
     {
       id: 1,
       value: '',
-      text: 'Отмена',
+      modalItemComponent: 'Отмена',
       onPress: () => setResultModal(false),
     },
     {
       id: 2,
       value: '',
-      text: 'Подтвердить',
+      modalItemComponent: 'Подтвердить',
       type: 'primary',
     },
   ]
@@ -88,13 +88,13 @@ export const Starting: React.FC = () => {
 
       <QRCodeSection {...{ qrValue }} />
 
-      <Modal
+      <SelectedModal
         handleSelect={() => setOptionsModal(false)}
         modalTitle="Выбрать опцию"
         modalVisible={optionsModal}
         items={optionsModalItems}
       />
-      <Modal
+      <SelectedModal
         handleSelect={() => {}}
         modalTitle="Такое устройство не найдено. Вы хотите поставить его на баланс?"
         modalVisible={resultModal}

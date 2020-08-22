@@ -26,10 +26,16 @@ export const BankData: React.FC = () => {
             <Box marginBottom="m">
               <Input label="БИК Банка" required />
             </Box>
-            <Box marginBottom="xl">
+            <Box marginBottom="m">
               <Input label="к/с банка" required />
             </Box>
-
+            <Box marginBottom="xl">
+              <Input
+                label="Телефон контакного лица"
+                inputProps={{ keyboardType: 'phone-pad' }}
+                type="phone"
+              />
+            </Box>
             <Box marginBottom="s">
               <Button onPress={() => {}} text="Сохранить" />
             </Box>

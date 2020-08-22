@@ -8,9 +8,6 @@ import { Input } from '~/components/molecules'
 import { useNavigation } from '@react-navigation/native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-{
-  /* TODO 40 минут */
-}
 export const AdmistatorsProfile: React.FC = () => {
   const navigation = useNavigation()
   return (
@@ -43,19 +40,20 @@ export const AdmistatorsProfile: React.FC = () => {
                 </Box>
               </Box>
             </TouchableBox>
-
             <Box marginBottom="m">
-              {/* TODO  */}
-              <Input label="Телефон" />
+              <Input
+                label="Телефон"
+                inputProps={{ keyboardType: 'phone-pad' }}
+                type="phone"
+                required
+              />
             </Box>
-
             <Box marginBottom="m">
-              <Input label="E-mail" />
+              <Input label="E-mail" required />
             </Box>
-            <Box marginBottom="m">
+            <Box marginBottom="l">
               <Input label="Сайт" />
             </Box>
-
             <Box marginBottom="s">
               <Button
                 onPress={() => navigation.navigate('GeneralInformation')}
@@ -80,7 +78,6 @@ export const AdmistatorsProfile: React.FC = () => {
                 variant="light"
               />
             </Box>
-
             <Box
               paddingVertical="l"
               flexDirection="row"
