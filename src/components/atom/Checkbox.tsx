@@ -1,13 +1,23 @@
 import React from 'react'
-import { TouchableBox, Text, Box } from '~/theme'
+import { TouchableBox, Text, Box, Theme } from '~/theme'
 import { CheckboxType } from '../molecules/CheckboxGroup'
 import { Icon } from './Icon'
+import { SpacingProps, LayoutProps } from '@shopify/restyle'
 
 type Props = CheckboxType & {
   onPress: (id: number) => void
+  style?: SpacingProps<Theme> & LayoutProps<Theme>
+  containerStyle?: SpacingProps<Theme> & LayoutProps<Theme>
 }
 
-export const Checkbox: React.FC<Props> = ({ id, checked, text, onPress }) => {
+export const Checkbox: React.FC<Props> = ({
+  id,
+  checked,
+  text,
+  onPress,
+  style,
+  containerStyle,
+}) => {
   const _renderCheckedItem = () => {
     if (checked) return <Icon name="checkmark" />
   }
@@ -17,7 +27,8 @@ export const Checkbox: React.FC<Props> = ({ id, checked, text, onPress }) => {
       marginBottom="m"
       flexDirection="row"
       onPress={() => onPress(id)}
-      alignItems="center">
+      alignItems="center"
+      {...containerStyle}>
       <Box
         borderWidth={1}
         borderColor="main"

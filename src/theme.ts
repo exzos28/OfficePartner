@@ -9,7 +9,7 @@ import {
   ShadowProps,
 } from '@shopify/restyle'
 
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { TouchableOpacity } from 'react-native'
 
 import {
   createRestyleComponent,
@@ -24,7 +24,8 @@ export const restyleTheme = createTheme({
   colors: {
     transparent: 'transparent',
     dark: '#242424',
-    main: '#4CD964',
+    main: '#006B90',
+    lightMain: '#51A2BE',
     marengo: 'rgba(58, 57, 84, 1)',
     grey: '#CECECE',
     white: '#FFFFFF',
@@ -34,12 +35,19 @@ export const restyleTheme = createTheme({
     inputText: '#58585E',
     mediumGrey: '#BEBEC0',
     info: '#FB5717',
-    primary: '#4CD964',
-    lightPrimary: 'rgba(76, 217, 100, 0.08)',
+    yellow: '#FCBC04',
+    green: '#4CAC44',
+    primary: '#006B90',
+    lightPrimary: 'rgba(81, 162, 190, 0.15)',
+
+    dropdownText: '#4B4B67',
+
+    notificationTitle: '#4B4B67',
+    notificationDate: '#CFCFCF',
 
     chatInputBackground: '#F0F0F0',
     chatMessageLeftBackground: 'rgba(237, 236, 242, 1)',
-    chatMessageRightBackground: '#4CD964',
+    chatMessageRightBackground: '#006B90',
     chatMessageLeftText: '#4B4B67',
     chatMessageRighText: '#FFFFFF',
     chatMessageLeftDate: '#8D8C91',
@@ -111,6 +119,12 @@ export const restyleTheme = createTheme({
       fontSize: 14,
       lineHeight: 16,
       color: 'dark',
+    },
+    dropdownText: {
+      fontFamily: 'Raleway-SemiBold',
+      fontSize: 9,
+      lineHeight: 10,
+      color: 'dropdownText',
     },
   },
 })

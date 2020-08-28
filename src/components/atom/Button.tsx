@@ -30,6 +30,7 @@ type Props = SpacingProps<Theme> &
     variant?: 'primary' | 'outline' | 'link' | 'light'
     inline?: boolean
     weight?: 'regular' | 'bold' | 'medium' | 'semiBold'
+    disabled?: boolean
   }
 
 export const Button: React.FC<Props> = ({
@@ -41,6 +42,7 @@ export const Button: React.FC<Props> = ({
   reverse,
   inline,
   weight,
+  disabled,
   ...rest
 }) => {
   const props = useRestyle(restyleFunctions, rest)
@@ -54,17 +56,36 @@ export const Button: React.FC<Props> = ({
       ? 'white'
       : 'main'
 
-  let color =
-    variant === 'primary'
-      ? 'white'
-      : variant === 'link'
-      ? 'main'
-      : variant === 'light'
-      ? 'main'
-      : 'white'
+  let color = (() => {
+    if (disabled) {
+      return 'grey'
+    }
+    if (variant === 'primary') {
+      return 'white'
+    } else if (variant === 'link') {
+      return 'main'
+    } else if (variant === 'light') {
+      return 'main'
+    } else {
+      return 'white'
+    }
+  })()
 
-  let borderColor =
-    variant === 'link' ? 'transparent' : outline ? 'white' : 'main'
+  let borderColor = (() => {
+    if (disabled) {
+      return 'grey'
+    }
+    if (variant === 'link') {
+      return 'transparent'
+    } else if (outline) {
+      return 'white'
+    } else {
+      return 'main'
+    }
+  })()
+
+  // let borderColor =
+  //   variant === 'link' ? 'transparent' : outline ? 'white' : 'main'
 
   const padding = inline ? undefined : 'm'
 
@@ -85,8 +106,13 @@ export const Button: React.FC<Props> = ({
     return children
   }
 
+  const handlePress = () => {
+    if (disabled) return
+    onPress()
+  }
+
   return (
-    <TouchableOpacity {...{ onPress }} {...props}>
+    <TouchableOpacity {...{ onPress: handlePress, disabled }} {...props}>
       <Box
         {...{ backgroundColor, borderColor, padding }}
         borderWidth={weight === 'semiBold' ? 1 : 2}
@@ -97,7 +123,3 @@ export const Button: React.FC<Props> = ({
     </TouchableOpacity>
   )
 }
-
-const styles = StyleSheet.create({
-  innerContainer: {},
-})

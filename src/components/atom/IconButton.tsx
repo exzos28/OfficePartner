@@ -6,9 +6,11 @@ import {
   SpacingProps,
   BackgroundColorProps,
   BorderProps,
+  LayoutProps,
 } from '@shopify/restyle'
 
-type ContainerStyleProps = SpacingProps<Theme> &
+type ContainerStyleProps = LayoutProps<Theme> &
+  SpacingProps<Theme> &
   BorderProps<Theme> &
   BackgroundColorProps<Theme> & {}
 
@@ -18,14 +20,12 @@ type Props = TouchableOpacityProps &
   }
 
 export const IconButton: React.FC<Props> = ({ children, ...props }) => (
-  <Box>
-    <TouchableBox
-      alignItems="center"
-      justifyContent="center"
-      minHeight={40}
-      minWidth={40}
-      {...props}>
-      {children}
-    </TouchableBox>
-  </Box>
+  <TouchableBox
+    alignItems="center"
+    justifyContent="center"
+    minHeight={props.minHeight ? props.minHeight : 40} // FIX RESTYLE BUG
+    minWidth={40}
+    {...props}>
+    {children}
+  </TouchableBox>
 )

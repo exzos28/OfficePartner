@@ -42,7 +42,7 @@ export const Login = () => {
             />
           </Box>
 
-          <Button variant="primary" text="Подтвердить" onPress={() => { }} />
+          <Button variant="primary" text="Подтвердить" onPress={() => navigation.navigate('HomeStack')} />
 
           <Button
             variant="link"

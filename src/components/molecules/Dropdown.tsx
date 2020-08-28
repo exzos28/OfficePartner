@@ -74,6 +74,7 @@ export const Dropdown: React.FC<Props> = ({
           modalTitle,
           modalVisible,
           renderItem: renderModalItem,
+          dismiss: () => setModalVisible(false),
         }}
       />
     </Box>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, StyleSheet, ImageRequireSource } from 'react-native'
+import { Image, StyleSheet, ImageSourcePropType } from 'react-native'
 import restyleTheme, { Box } from '~/theme'
 
 type Props = {
@@ -8,17 +8,15 @@ type Props = {
     width: number
     height: number
   }
-  source?: ImageRequireSource
+  source?: ImageSourcePropType
 }
 
 export const Avatar: React.FC<Props> = ({ uri, source, size }) => {
   const width = size?.width || 51
   const height = size?.height || 51
 
-
   const _source = source ? source : { uri }
 
- 
   return (
     <Box borderRadius={width / 2} overflow="hidden" {...{ width, height }}>
       <Image

@@ -25,6 +25,7 @@ export const Starting: React.FC = () => {
     {
       name: 'Мой календарь',
       icon: <Icon name="calendar" />,
+      onPress: () => navigation.navigate('MyCalendar'),
     },
     {
       name: 'QR код',

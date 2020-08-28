@@ -2,6 +2,7 @@ export type Technik = {
   imgUri: string
   name: string
   code: string
+  status: number
 }
 
 export type Master = {
@@ -24,4 +25,10 @@ export type SelectedModalItemType = {
   value: string | number
   type?: 'primary' | string
   onPress?: () => void
+}
+
+export type User = {
+  role: string
+  name: string
+  imgUri: string
 }

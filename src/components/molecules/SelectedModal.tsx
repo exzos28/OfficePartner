@@ -1,5 +1,10 @@
 import React from 'react'
-import { Modal as RNModal, FlatList, Dimensions } from 'react-native'
+import {
+  Modal as RNModal,
+  FlatList,
+  Dimensions,
+  TouchableWithoutFeedback,
+} from 'react-native'
 import { BlurView } from '@react-native-community/blur'
 import restyleTheme, { Box, TouchableBox, Text } from '~/theme'
 import { SelectedModalItemType } from '~/@types'
@@ -12,6 +17,7 @@ type Props = {
   items?: Array<SelectedModalItemType>
   handleSelect: (item: SelectedModalItemType) => void
   numbered?: boolean
+  dismiss?: () => void
   renderItem?: (
     item: SelectedModalItemType,
     cb: (item: SelectedModalItemType) => void,
@@ -25,6 +31,7 @@ export const SelectedModal: React.FC<Props> = ({
   renderItem,
   items,
   numbered,
+  dismiss,
 }) => {
   const onItemPress = (item: SelectedModalItemType) => {
     if (item.onPress) item.onPress()
@@ -56,20 +63,24 @@ export const SelectedModal: React.FC<Props> = ({
     const backgroundColor = item.type === 'primary' ? 'primary' : 'white'
     const color = item.type === 'primary' ? 'white' : 'primary'
     return (
-      <TouchableBox
-        borderColor="primary"
-        borderWidth={1}
-        borderRadius={6}
-        marginBottom="s"
-        padding="m"
-        onPress={() => onItemPress(item)}
-        {...{ backgroundColor }}>
-        {_renderText()}
+      <TouchableBox onPress={() => onItemPress(item)} {...{ backgroundColor }}>
+        <Box
+          borderColor="primary"
+          borderWidth={1}
+          borderRadius={6}
+          marginBottom="s"
+          padding="m">
+          {_renderText()}
+        </Box>
       </TouchableBox>
     )
   }
   return (
-    <RNModal animationType="fade" transparent={true} visible={modalVisible}>
+    <RNModal
+      animationType="fade"
+      transparent={true}
+      visible={modalVisible}
+      onRequestClose={dismiss}>
       <Box flex={1}>
         <BlurView style={{ flex: 1 }}>
           <Box
@@ -78,6 +89,16 @@ export const SelectedModal: React.FC<Props> = ({
             borderColor="transparent"
             alignItems="center"
             justifyContent="center">
+            <TouchableWithoutFeedback onPress={dismiss}>
+              <Box
+                backgroundColor="transparent"
+                position="absolute"
+                top={0}
+                bottom={0}
+                left={0}
+                right={0}
+              />
+            </TouchableWithoutFeedback>
             <Box
               shadowColor="grey"
               shadowOffset={{

@@ -11,6 +11,7 @@ type Props = {
   title?: string
   titleDotNumber?: number
   leftComponent?: React.ReactNode
+  rightComponent?: React.ReactNode
 }
 
 export const Header: React.FC<Props> = ({
@@ -18,6 +19,7 @@ export const Header: React.FC<Props> = ({
   titleDotNumber,
   title,
   leftComponent,
+  rightComponent,
 }) => {
   const { top } = useSafeAreaInsets()
   const navigation = useNavigation()
@@ -58,21 +60,27 @@ export const Header: React.FC<Props> = ({
   const _renderRight = () => {
     return (
       <Box flexShrink={1} flexDirection="row" alignItems="center">
-        <IconButton>
-          <Icon name="notification" />
-          <Box
-            position="absolute"
-            top={4}
-            right={12}
-            width={9}
-            height={9}
-            borderRadius={4.5}
-            backgroundColor="info"
-          />
-        </IconButton>
-        <IconButton>
-          <Icon name="menu" />
-        </IconButton>
+        {rightComponent ? (
+          rightComponent
+        ) : (
+          <>
+            <IconButton onPress={() => navigation.navigate('Notifications')}>
+              <Icon name="notification" />
+              <Box
+                position="absolute"
+                top={4}
+                right={12}
+                width={9}
+                height={9}
+                borderRadius={4.5}
+                backgroundColor="info"
+              />
+            </IconButton>
+            <IconButton>
+              <Icon name="menu" />
+            </IconButton>
+          </>
+        )}
       </Box>
     )
   }

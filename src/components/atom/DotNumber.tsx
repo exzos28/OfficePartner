@@ -11,8 +11,8 @@ export const DotNumber: React.FC<Props> = ({
   number,
 }) => (
   <Box
-    height={25}
-    minWidth={25}
+    height={23}
+    minWidth={23}
     paddingHorizontal="s"
     alignItems="center"
     justifyContent="center"
