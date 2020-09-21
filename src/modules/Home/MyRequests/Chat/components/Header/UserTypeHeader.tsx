@@ -11,7 +11,7 @@ type Props = {
   title?: string
 }
 
-export const Header: React.FC<Props> = ({ hasBack = true, title }) => {
+export const UserTypeHeader: React.FC<Props> = ({ hasBack = true, title }) => {
   const { top } = useSafeAreaInsets()
   const navigation = useNavigation()
 
@@ -31,24 +31,20 @@ export const Header: React.FC<Props> = ({ hasBack = true, title }) => {
 
   const _renderRight = () => (
     <Box paddingRight="s" alignItems="center">
-      <Avatar uri="https://www.figma.com/file/VV9GVaQ9jZ07o5L75477cI/image/b643afd80f2698f277d180c4ff4254592add2d23" />
+      <Avatar source={require('~/assets/mock/user1.png')} />
     </Box>
   )
 
   const _renderCenter = () => {
     return (
       <Box justifyContent="center" alignItems="center">
-        <Text marginRight="m" marginBottom="xs" variant="headerTitle">
+        <Text marginBottom="xs" variant="headerTitle">
           {title}
         </Text>
-        <Text
-          color="mediumGrey"
-          marginBottom="xs"
-          marginRight="m"
-          variant="regular">
+        <Text color="mediumGrey" marginBottom="xs" variant="regular">
           Вызов мастера
         </Text>
-        <Text color="primary" marginRight="m" variant="regular">
+        <Text color="primary" variant="regular">
           4QD21A
         </Text>
       </Box>

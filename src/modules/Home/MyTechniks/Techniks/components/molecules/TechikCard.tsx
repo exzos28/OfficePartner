@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, StyleSheet } from 'react-native'
-import { TouchableBox, Box, Text, Theme } from '~/theme'
+import { TouchableBox, Box, Text, Theme, shadow } from '~/theme'
 import {
   SpacingProps,
   ColorProps,
@@ -26,9 +26,9 @@ export const TechnikCard: React.FC<Props> = ({
   const _renderDot = (color: BackgroundColorProps<Theme>) => {
     return (
       <Box
-        width={10}
-        height={10}
-        borderRadius={5}
+        width={8}
+        height={8}
+        borderRadius={4}
         backgroundColor={color.backgroundColor}
         marginRight="s"
       />
@@ -53,6 +53,15 @@ export const TechnikCard: React.FC<Props> = ({
           </Text>
         </Box>
       )
+    else if (status === 3)
+      return (
+        <Box flexDirection="row" alignItems="center" marginRight="xs">
+          {_renderDot({ backgroundColor: 'blue' })}
+          <Text variant="regular" color="blue" fontSize={12}>
+            На обслуживании
+          </Text>
+        </Box>
+      )
     return null
   }
 
@@ -66,13 +75,20 @@ export const TechnikCard: React.FC<Props> = ({
       borderRadius={6}
       {...{ onPress }}
       {...spacing}>
-      <Box width={90} height={100} marginBottom="m">
+      <Box
+        justifyContent="center"
+        alignItems="center"
+        width={90}
+        height={100}
+        marginBottom="m">
         <Image
-          style={{ ...StyleSheet.absoluteFillObject }}
-          resizeMode="center"
-          source={{
-            uri: imgUri,
-          }}
+          source={imgUri}
+          // source={{
+          //   uri: imgUri,
+          // }} // TODO сменить на uri когда будет сервер, сейчас mock на require
+          // style={{ width: '100%', height: '100%' }}
+          style={{ maxWidth: '100%' }}
+          resizeMode="contain"
         />
       </Box>
       <Box flex={1} alignItems="center">

@@ -56,7 +56,7 @@ export const Message: React.FC<Props> = ({
         flexWrap="wrap"
         style={{ backgroundColor }}>
         <Text
-          variant="regular"
+          variant="medium"
           style={{ color }}
           fontSize={14}
           lineHeight={16}
@@ -68,8 +68,11 @@ export const Message: React.FC<Props> = ({
             marginLeft: 'auto',
             transform: [{ translateY: 5 }],
           }}>
-          <Text variant="regular" style={{ color: dateColor }}>
-            {date}
+          <Text
+            textAlign="center"
+            variant="regular"
+            style={{ color: dateColor }}>
+            {` ${date} `}
           </Text>
         </Box>
         {_renderPolygon()}

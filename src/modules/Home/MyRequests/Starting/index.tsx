@@ -3,8 +3,7 @@ import { Box } from '~/theme'
 import { Header } from '~/components/organisms'
 import { Fab, SelectedModal } from '~/components/molecules'
 import { useNavigation } from '@react-navigation/native'
-import { chatListUsers } from '~/mock'
-import { MasterCardList } from '../components/organisms'
+import { RequestsList } from './RequestsList'
 
 const modalTypeItems = [
   {
@@ -42,9 +41,7 @@ export const Starting: React.FC = () => {
     <>
       <Box flex={1} backgroundColor="lightGrey">
         <Header title="Мои запросы" titleDotNumber={3} />
-        <Box flex={1}>
-          <MasterCardList items={chatListUsers} />
-        </Box>
+        <RequestsList />
         <Fab onPress={() => setTypeModalVisible(true)} />
         <SelectedModal
           numbered

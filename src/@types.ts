@@ -1,5 +1,7 @@
+import { ImageRequireSource } from 'react-native'
+
 export type Technik = {
-  imgUri: string
+  imgUri: ImageRequireSource // TODO сменить на uri когда будет сервер, сейчас mock на require
   name: string
   code: string
   status: number

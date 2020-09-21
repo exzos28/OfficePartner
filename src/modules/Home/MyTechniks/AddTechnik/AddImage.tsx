@@ -57,7 +57,7 @@ export const AddImage = () => {
       </Box>
       <Box
         position="absolute"
-        right={0}
+        right={5}
         bottom={0}
         backgroundColor="main"
         width={20}

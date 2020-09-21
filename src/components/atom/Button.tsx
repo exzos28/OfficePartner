@@ -84,9 +84,6 @@ export const Button: React.FC<Props> = ({
     }
   })()
 
-  // let borderColor =
-  //   variant === 'link' ? 'transparent' : outline ? 'white' : 'main'
-
   const padding = inline ? undefined : 'm'
 
   const _renderContent = () => {
@@ -112,7 +109,10 @@ export const Button: React.FC<Props> = ({
   }
 
   return (
-    <TouchableOpacity {...{ onPress: handlePress, disabled }} {...props}>
+    <TouchableOpacity
+      delayPressIn={10}
+      {...{ onPress: handlePress, disabled }}
+      {...props}>
       <Box
         {...{ backgroundColor, borderColor, padding }}
         borderWidth={weight === 'semiBold' ? 1 : 2}

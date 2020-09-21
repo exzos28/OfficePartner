@@ -17,7 +17,9 @@ const navigatorOption = {
 }
 
 export const TechnikStack = () => (
-  <Stack.Navigator initialRouteName="Techniks" screenOptions={navigatorOption}>
+  <Stack.Navigator
+    initialRouteName="Techniks"
+    screenOptions={navigatorOption}>
     <Stack.Screen name="Techniks" component={Techniks} />
     <Stack.Screen name="TechnikInfo" component={TechnikInfo} />
     <Stack.Screen name="AddTechnik" component={AddTechnik} />

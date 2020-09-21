@@ -30,17 +30,13 @@ export const SearchBar: React.FC<Props> = ({
         borderRadius={7}
         padding="s"
         justifyContent="center"
-        alignItems="center"
-        backgroundColor="main">
+        alignItems="center">
         <Box marginRight="xs">
           <Icon name="sort" />
         </Box>
-        <Text color="white" variant="semiBold">
+        <Text color="main" variant="semiBold">
           Сортировать по тэгам
         </Text>
-        <Box position="absolute" top={-12} right={-10}>
-          <DotNumber number={2} />
-        </Box>
       </TouchableBox>
     </Box>
   </Box>

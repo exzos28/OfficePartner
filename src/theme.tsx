@@ -7,6 +7,7 @@ import {
   border,
   backgroundColor,
   ShadowProps,
+  ResponsiveValue,
 } from '@shopify/restyle'
 
 import { TouchableOpacity } from 'react-native'
@@ -38,6 +39,7 @@ export const restyleTheme = createTheme({
     yellow: '#FCBC04',
     green: '#4CAC44',
     primary: '#006B90',
+    blue: '#1C74FC',
     lightPrimary: 'rgba(81, 162, 190, 0.15)',
 
     dropdownText: '#4B4B67',
@@ -52,10 +54,34 @@ export const restyleTheme = createTheme({
     chatMessageRighText: '#FFFFFF',
     chatMessageLeftDate: '#8D8C91',
     chatMessageRightDate: 'rgba(255, 255, 255, 0.5)',
+
+    tagBackgroundPrimary: '#E6F1F4',
+    tagColorPrimary: '#006B90',
+    tagBackgroundInfo: '#FFF7F4',
+    tagColorInfo: '#FCBC04',
+
+    tableRowTitle: '#4B4B67',
+    tableBorder: '#deeaef',
+    tableRowContrastBackground: '#F3F9FB',
+    tableRowBorder: '#E0E8EB',
+
+    requestCardTitle: '#4B4B67',
+    requestInnerLine: '#E5F1F5',
+
+    scrollBackground: '#E6F1F4',
+    scrollIndicator: '#51A2BE',
   },
   spacing: {
+    '-xs': -4,
+    '-s': -8,
+    '-xm': -11,
+    '-m': -15,
+    '-l': -25,
+    '-xl': -40,
+
     xs: 4,
     s: 8,
+    xm: 11,
     m: 15,
     l: 25,
     xl: 40,
@@ -135,8 +161,8 @@ export const shadow: ShadowProps<Theme> = {
     width: 0,
     height: 0,
   },
-  shadowOpacity: 0.4,
-  shadowRadius: 15,
+  shadowOpacity: 0.25,
+  shadowRadius: 10,
   elevation: 1,
 }
 
@@ -149,6 +175,8 @@ type TouchableProps = SpacingProps<Theme> &
   }
 
 export const TouchableBox = createBox<Theme, TouchableProps>(TouchableOpacity)
+
+export type ColorValueType = keyof Theme['colors']
 
 export const Box = createBox<Theme>()
 export const Text = createText<Theme>()

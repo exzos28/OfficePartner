@@ -3,7 +3,7 @@ import { Box, shadow } from '~/theme'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Input } from './Input'
 import { Icon } from '~/components/atom'
-import { ChatContext } from '.'
+import { ChatContext } from './Chat'
 import { Platform } from 'react-native'
 
 export const Footer = () => {

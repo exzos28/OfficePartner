@@ -8,7 +8,7 @@ import { Section } from '~/components/template'
 import { PickImage, Result } from './PickImage'
 
 import QRCode from 'react-native-qrcode-svg'
-import { StartingScreenRouteProp } from '~/navigation/ScanQRStack'
+import { StartingScreenRouteProp } from '~/navigation/Home/ScanQRStack'
 import { QRCodeSection } from './QRCodeSection'
 
 export const Starting: React.FC = () => {

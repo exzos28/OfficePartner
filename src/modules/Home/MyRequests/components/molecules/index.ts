@@ -1,1 +1,0 @@
-export { MasterCard } from './MasterCard'

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import restyleTheme, { Box } from '~/theme'
 import { TextInput } from 'react-native-gesture-handler'
 import { StyleSheet, Dimensions } from 'react-native'
-import { ChatContext } from '.'
+import { ChatContext } from './Chat'
 
 const HEIGHT = Dimensions.get('window').height
 const MAX_HEIGHT_INPUT = HEIGHT * 0.2

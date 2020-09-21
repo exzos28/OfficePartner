@@ -7,6 +7,7 @@ type Props = {
   headerRightComponent?: React.ReactNode
   children?: React.ReactNode
   containerStyleProps?: SpacingProps<Theme> & LayoutProps<Theme>
+  headerContainerStyleProps?: SpacingProps<Theme> & LayoutProps<Theme>
 }
 
 export const Section: React.FC<Props> = ({
@@ -14,6 +15,7 @@ export const Section: React.FC<Props> = ({
   children,
   headerRightComponent,
   containerStyleProps,
+  headerContainerStyleProps,
 }) => {
   const _renderHeader = () => {
     const marginBottom = children ? 's' : undefined
@@ -22,9 +24,10 @@ export const Section: React.FC<Props> = ({
         {...{ marginBottom }}
         flexDirection="row"
         alignItems="center"
-        justifyContent="space-between">
+        justifyContent="space-between"
+        {...headerContainerStyleProps}>
         {title ? (
-          <Text variant="semiBold" color="marengo">
+          <Text variant="semiBold" color="marengo" letterSpacing={0.3}>
             {title}
           </Text>
         ) : null}
@@ -34,18 +37,17 @@ export const Section: React.FC<Props> = ({
   }
 
   return (
-    <Box marginHorizontal="l">
-      <Box
-        backgroundColor="white"
-        marginBottom="s"
-        paddingHorizontal="l"
-        paddingVertical="m"
-        borderRadius={10}
-        {...shadow}
-        {...containerStyleProps}>
-        {_renderHeader()}
-        {children}
-      </Box>
+    <Box
+      backgroundColor="white"
+      marginHorizontal="l"
+      marginBottom="s"
+      paddingHorizontal="l"
+      paddingVertical="m"
+      borderRadius={10}
+      {...shadow}
+      {...containerStyleProps}>
+      {_renderHeader()}
+      {children}
     </Box>
   )
 }

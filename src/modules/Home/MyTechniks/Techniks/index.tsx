@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, Ref } from 'react'
-import restyleTheme, { Box, shadow } from '~/theme'
+import restyleTheme, { Box, shadow, TouchableBox } from '~/theme'
 import { TechnikCardList } from './components/organisms'
 import { useNavigation } from '@react-navigation/native'
 import { Fab, CheckboxGroup } from '~/components/molecules'
@@ -9,6 +9,7 @@ import { Icon } from '~/components/atom'
 import { TextInput, View, StyleSheet } from 'react-native'
 
 import Animated, { interpolate, diffClamp } from 'react-native-reanimated'
+import { tecknikItems } from '~/mock'
 
 const HEADER_HEIGHT = 150
 
@@ -51,25 +52,52 @@ export const Techniks: React.FC = () => {
           />
         </Animated.View>
 
-        <TechnikCardList {...{ scrollY }} />
+        <TechnikCardList scrollY={scrollY} items={tecknikItems} />
 
         {filterVisible ? (
           <Box
             position="absolute"
-            top={88}
             width="100%"
-            paddingHorizontal="l"
-            zIndex={3}>
+            height="100%"
+            zIndex={4}>
+            <TouchableBox
+              position="absolute"
+              height="100%"
+              width="100%"
+              onPress={handleFilterVisible}
+            />
             <Box
-              height={300}
-              backgroundColor="white"
-              borderRadius={7}
-              padding="l"
-              {...shadow}>
-              <Box position="absolute" right={15} top={-13}>
-                <Icon name="triangle" />
-              </Box>
-              <Box marginBottom="l">
+              position="absolute"
+              top={88}
+              width="100%"
+              paddingHorizontal="l">
+              <Box
+                height={300}
+                backgroundColor="white"
+                borderRadius={7}
+                padding="l"
+                {...shadow}>
+                <Box position="absolute" right={15} top={-13}>
+                  <Icon name="triangle" />
+                </Box>
+                <Box marginBottom="l">
+                  <CheckboxGroup
+                    checkboxListContainerStyle={{
+                      flexDirection: 'row',
+                      flexWrap: 'wrap',
+                      justifyContent: 'space-between',
+                    }}
+                    checkboxContainerStyle={{ marginRight: 'l' }}
+                    onChangeItem={() => {}}
+                    label="Тип устройства"
+                    items={[
+                      { id: 1, text: 'Тип 1', checked: false },
+                      { id: 2, text: 'Тип 2', checked: false },
+                      { id: 3, text: 'Тип 3', checked: false },
+                      { id: 4, text: 'Тип 4', checked: false },
+                    ]}
+                  />
+                </Box>
                 <CheckboxGroup
                   checkboxListContainerStyle={{
                     flexDirection: 'row',
@@ -78,7 +106,7 @@ export const Techniks: React.FC = () => {
                   }}
                   checkboxContainerStyle={{ marginRight: 'l' }}
                   onChangeItem={() => {}}
-                  label="Тип устройства"
+                  label="Название офиса"
                   items={[
                     { id: 1, text: 'Тип 1', checked: false },
                     { id: 2, text: 'Тип 2', checked: false },
@@ -87,22 +115,6 @@ export const Techniks: React.FC = () => {
                   ]}
                 />
               </Box>
-              <CheckboxGroup
-                checkboxListContainerStyle={{
-                  flexDirection: 'row',
-                  flexWrap: 'wrap',
-                  justifyContent: 'space-between',
-                }}
-                checkboxContainerStyle={{ marginRight: 'l' }}
-                onChangeItem={() => {}}
-                label="Название офиса"
-                items={[
-                  { id: 1, text: 'Тип 1', checked: false },
-                  { id: 2, text: 'Тип 2', checked: false },
-                  { id: 3, text: 'Тип 3', checked: false },
-                  { id: 4, text: 'Тип 4', checked: false },
-                ]}
-              />
             </Box>
           </Box>
         ) : null}
